@@ -7,9 +7,11 @@ import { useStateValue } from '../stateProvider';
 const Subtotal = () => {
     const [ { basket } ] = useStateValue();
 
-    console.log( "subtotal checkout", basket );
-    let total = basket.reduce( function ( a, b ) { return a + b.price; }, 0 );
-    console.log( "Total", total );
+    //console.log( "subtotal checkout", basket );
+    let total = basket?.reduce( function ( a, b ) { return a + b.price; }, 0 );
+    /*export const getBasketTotal = ( basket ) => basket?.reduce( ( amount, item ) => item.price + amount, 0 );*/   //Solucion de ellos en reducer challenge day 3 
+
+    //console.log( "Total", total );
 
     return <div className="subtotal">
         <CurrencyFormat

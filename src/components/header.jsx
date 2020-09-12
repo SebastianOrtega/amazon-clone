@@ -5,11 +5,19 @@ import "./css/header.css";
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useStateValue } from '../stateProvider';
+import { auth } from "../firebase";
 
 
 const Header = () => {
-  const [ { basket }, dispatch ] = useStateValue();
-  console.log( "Baskey in header>>>", basket );
+  const [ { basket, user } ] = useStateValue();
+  //console.log( "Baskey in header>>>", basket );
+  const handleAuth = () => {
+    if ( user )
+    {
+      console.log( "click sign" );
+      auth.signOut();
+    }
+  };
   return (
 
     <div className="header">
@@ -23,8 +31,8 @@ const Header = () => {
       </div>
       <div className="header_nav">
         <div className="header_option">
-          <span className="header_optionLine1">Hello Guest</span>
-          <span className="header_optionLine2">Sign in</span>
+          <span className="header_optionLine1">Hello { user ? user.email : 'Guest' }</span>
+          <span className="header_optionLine2" onClick={ handleAuth }>{ user ? 'Sign Out' : <Link to="/login">Sign in</Link> }</span>
         </div>
         <div className="header_option">
           <span className="header_optionLine1">returns</span>

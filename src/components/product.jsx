@@ -1,4 +1,5 @@
 import React from 'react';
+import CurrencyFormat from 'react-currency-format';
 import { useStateValue } from '../stateProvider';
 import "./css/product.css";
 
@@ -9,6 +10,7 @@ const Product = ( { id, title, image, price, rating } ) => {
 
     const [ basket, dispatch ] = useStateValue();
     //console.log( "basket:", basket );
+
 
     const addtoBasket = () => {
         dispatch( {
@@ -27,12 +29,18 @@ const Product = ( { id, title, image, price, rating } ) => {
             </p>
             <p className="price">
                 <small>$</small>
-                <strong>{ price }</strong>
+                <strong><CurrencyFormat
+                    value={ price }
+                    decimalScale={ 2 }
+                    thousandSeparator={ true }
+                    displayType={ "text" }
+                    prefix={ "$" }
+                /></strong>
             </p>
             <div className="product_rating">
                 { rating && Array( rating )
                     .fill()
-                    .map( ( _, i ) => ( <span role="img" aria-label="xxxxx">⭐️</span> ) ) }
+                    .map( ( _ ) => ( <span key={ Math.floor( ( Math.random() * 1000 ) + 1 ) } role="img" aria-label="xxxxx">⭐️</span> ) ) }
 
             </div>
 

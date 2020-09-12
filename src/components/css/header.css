@@ -55,6 +55,7 @@
 }
 
 .header_optionLine2 {
+  cursor: pointer;
 }
 
 .header_basketCount {
