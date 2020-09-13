@@ -22,7 +22,7 @@ const Checkout = () => {
                 <div className="checkout_title">
                     <h3>Shopping basket</h3>
                     <h4>Hello { user?.email } you basket is: </h4>
-                    { basket.map( ( item ) => <CheckoutProduct image={ item.image } id={ item.id } title={ item.title } price={ item.price } rating={ item.rating } /> ) }
+                    { basket.map( ( item ) => <CheckoutProduct image={ item.image } key={ item.id } id={ item.id } title={ item.title } price={ item.price } rating={ item.rating } /> ) }
                 </div>
             </div>
             <div className="checkout_right">
